@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <meta charset="UTF-8">
+    <title>مدیریت کاربران</title>
+</head>
+<body>
+
+<h2>ثبت کاربر</h2>
+
+<form method="POST">
+    <input type="text" name="name" placeholder="اسم" required>
+    <input type="number" name="age" placeholder="سن" required>
+    <button type="submit">ثبت</button>
+</form>
+
+<hr>
+
+<h3>جستجو</h3>
+<form method="GET">
+    <input type="text" name="search" placeholder="نام را وارد کنید">
+    <button type="submit">جستجو</button>
+</form>
+
+<br>
+
+<h2>لیست کاربران</h2>
+
+<table>
+    <tr>
+        <th>نام</th>
+        <th>سن</th>
+        <th>عملیات</th>
+    </tr>
+
+    {% for user in users %}
+    <tr>
+        <td>{{ user[1] }}</td>
+        <td>{{ user[2] }}</td>
+        <td>
+            <a href="/edit/{{ user[0] }}">✏ ویرایش</a>
+            <a href="/delete/{{ user[0] }}">❌ حذف</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+</body>
+</html>
